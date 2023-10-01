@@ -25,7 +25,7 @@ import com.carles.lalloriguera.ui.extensions.LightDarkPreviews
 import com.carles.lalloriguera.ui.extensions.Tags.TOP_BAR_TITLE
 import com.carles.lalloriguera.ui.theme.LlorigueraTheme
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LlorigueraTopBar(
     @StringRes title: Int,

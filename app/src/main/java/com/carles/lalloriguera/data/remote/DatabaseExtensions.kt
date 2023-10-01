@@ -61,10 +61,20 @@ suspend fun DatabaseReference.waitForConnection(timeout: Long = DEFAULT_TIMEOUT)
             val listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val isConnected = snapshot.getValue(Boolean::class.java)!!
-                    if (isConnected) continuation.resume(true)
+                    if (isConnected) {
+                        if (continuation.isCompleted) {
+                            Log.i("TaskRemoteDatasource", "waitForConnection:onDataChanged:continuation already resumed")
+                            return
+                        }
+                        continuation.resume(true)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
+                    if (continuation.isCompleted) {
+                        Log.i("TaskRemoteDatasource", "waitForConnection:onCancelled:continuation already resumed")
+                        return
+                    }
                     Log.w("TaskRemoteDatasource", "checkConnection:${error.message}")
                     continuation.resumeWithException(error.toException())
                 }

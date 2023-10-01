@@ -104,7 +104,7 @@ private fun TaskFormContent(
         verticalArrangement = Arrangement.spacedBy(26.dp)
     ) {
         NameTextField(task.name, isValid, onNameChange)
-        PeriodicityRadioButtons(task.isOneTime, task.periodicity, onOneTimeChange)
+        TaskTypeRadioButtons(task.isOneTime, task.periodicity, onOneTimeChange)
         OneTimeTaskContent(task.isOneTime, task.nextDate, onNextDateChange)
         PeriodicTaskContent(task.isOneTime.not(), task.lastDate, task.periodicity, onLastDateChange, onPeriodicityChange)
         buttonsRow()
@@ -135,7 +135,7 @@ private fun NameTextField(name: String, isValid: Boolean, onNameChange: (String)
 }
 
 @Composable
-private fun PeriodicityRadioButtons(
+private fun TaskTypeRadioButtons(
     isOneTime: Boolean,
     periodicity: Int,
     onOneTimeChange: (Boolean) -> Unit,
@@ -151,17 +151,17 @@ private fun PeriodicityRadioButtons(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        stringResource(R.string.new_task_one_time_false_alt),
+                        stringResource(R.string.new_task_periodic),
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    SupportingText(pluralStringResource(R.plurals.new_task_one_time_false_description, periodicity, periodicity))
+                    SupportingText(pluralStringResource(R.plurals.new_task_periodic_description, periodicity, periodicity))
                 }
                 RadioButton(selected = isOneTime.not(), onClick = { onOneTimeChange(false) })
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        stringResource(R.string.new_task_one_time_alt),
+                        stringResource(R.string.new_task_one_time),
                         style = MaterialTheme.typography.bodyMedium
                     )
                     SupportingText(R.string.new_task_one_time_description)
@@ -174,7 +174,7 @@ private fun PeriodicityRadioButtons(
             }
         }
         Text(
-            stringResource(R.string.new_task_one_time_label),
+            stringResource(R.string.new_task_type_label),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier

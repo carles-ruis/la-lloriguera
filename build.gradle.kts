@@ -3,8 +3,6 @@ plugins {
     id("com.android.application") version "8.1.1" apply false
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
     id("com.google.dagger.hilt.android") version "2.48" apply false
-    //c"com.google.dagger:hilt-android-gradle-plugin:2.40.5"
-    //    }
     id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
     id("com.google.gms.google-services") version "4.4.0" apply false
 }

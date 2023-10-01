@@ -2,11 +2,9 @@ package com.carles.lalloriguera.ui.composables
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.animation.with
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +29,6 @@ fun AnimatedSupportingText(@StringRes resId: Int, label: String = "AnimatedSuppo
     AnimatedSupportingText(stringResource(resId), label)
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AnimatedSupportingText(text: String, label: String = "AnimatedSupportingText") {
     AnimatedContent(

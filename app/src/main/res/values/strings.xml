@@ -32,16 +32,14 @@
     <string name="new_task_name_label">Nom</string>
     <string name="new_task_name_placeholder">Regar les plantes</string>
     <string name="new_task_name_description">Escriu el nom de la tasca</string>
-    <string name="new_task_one_time">Tasca puntual</string>
-    <string name="new_task_one_time_false">Tasca periodica</string>
+    <string name="new_task_one_time">Puntual</string>
+    <string name="new_task_type_label">Tipus de tasca</string>
     <string name="new_task_one_time_description">La tasca es fara una sola vegada</string>
-    <plurals name="new_task_one_time_false_description">
+    <string name="new_task_periodic">Periodica</string>
+    <plurals name="new_task_periodic_description">
         <item quantity="one">La tasca es fara cada dia</item>
         <item quantity="other">La tasca es fara cada %d dies</item>
     </plurals>
-    <string name="new_task_one_time_label">Tipus de tasca</string>
-    <string name="new_task_one_time_alt">Puntual</string>
-    <string name="new_task_one_time_false_alt">Periodica</string>
     <string name="new_task_periodicity">Periodicitat</string>
     <string name="new_task_periodicity_one_time">Dies de termini</string>
     <string name="new_task_periodicity_description">Selecciona cada quants dies faras la tasca</string>
