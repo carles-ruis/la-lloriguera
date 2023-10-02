@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -31,9 +32,9 @@ fun LlorigueraNavHost(
     modifier: Modifier = Modifier,
 ) {
 
-    val onNewTaskClick = { navController.navigate(Screen.NewTask.route) }
-    val onEditTaskClick: (String) -> Unit = { taskId -> navController.navigate(Screen.EditTask.navigationRoute(taskId)) }
-    val onNoPendingTasks = { navController.navigate(Screen.Conill.route) }
+    val onNewTaskClick = { navController.toNewTask() }
+    val onEditTaskClick: (String) -> Unit = { taskId -> navController.toEditTask(taskId) }
+    val onNoPendingTasks = { navController.toConill() }
     val navigateUp: () -> Unit = { navController.popBackStack() }
 
     NavHost(
@@ -100,4 +101,16 @@ private fun NavGraphBuilder.conillDestination(navigateUp: () -> Unit) {
     composableWithTransition(Screen.Conill.route) {
         ConillScreen(navigateUp)
     }
+}
+
+private fun NavController.toNewTask() {
+    navigate(Screen.NewTask.route)
+}
+
+private fun NavController.toEditTask(taskId: String) {
+    navigate(Screen.EditTask.navigationRoute(taskId))
+}
+
+private fun NavController.toConill() {
+    navigate(Screen.Conill.route)
 }
