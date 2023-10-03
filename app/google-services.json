@@ -42,6 +42,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768684880154:android:f94e3154c2670e09df3ca3",
+        "android_client_info": {
+          "package_name": "com.carles.lallorigueraviews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768684880154-flgi8e11g5b13kfvcrl9aq2bfuubpugr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdgytIXlNA6QhzcLCvEykTj4Zfwqq9X2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768684880154-flgi8e11g5b13kfvcrl9aq2bfuubpugr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

@@ -23,7 +23,6 @@ import com.carles.lalloriguera.ui.screens.NewTaskScreen
 import com.carles.lalloriguera.ui.screens.Screen
 import com.carles.lalloriguera.ui.screens.SignInScreen
 import com.carles.lalloriguera.ui.screens.TasksScreen
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 @Composable
