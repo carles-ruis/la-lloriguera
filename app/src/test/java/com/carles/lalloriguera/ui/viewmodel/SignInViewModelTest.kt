@@ -1,4 +1,4 @@
-package com.carles.lalloriguera.ui
+package com.carles.lalloriguera.ui.viewmodel
 
 import MainDispatcherRule
 import android.app.Activity

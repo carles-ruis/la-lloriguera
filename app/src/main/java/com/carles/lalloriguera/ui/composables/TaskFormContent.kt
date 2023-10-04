@@ -1,7 +1,7 @@
 package com.carles.lalloriguera.ui.composables
 
 import androidx.annotation.StringRes
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -105,8 +105,10 @@ private fun TaskFormContent(
     ) {
         NameTextField(task.name, isValid, onNameChange)
         TaskTypeRadioButtons(task.isOneTime, task.periodicity, onOneTimeChange)
-        OneTimeTaskContent(task.isOneTime, task.nextDate, onNextDateChange)
-        PeriodicTaskContent(task.isOneTime.not(), task.lastDate, task.periodicity, onLastDateChange, onPeriodicityChange)
+        Box {
+            OneTimeTaskContent(task.isOneTime, task.nextDate, onNextDateChange)
+            PeriodicTaskContent(task.isOneTime.not(), task.lastDate, task.periodicity, onLastDateChange, onPeriodicityChange)
+        }
         buttonsRow()
     }
 }
@@ -196,7 +198,9 @@ private fun OneTimeTaskContent(visible: Boolean, nextDate: Long, onNextDateChang
             label = R.string.new_task_next_date,
             supportingText = R.string.new_task_next_date_description,
             onDisplayDialog = onDisplayDialogPicker,
-            modifier = Modifier.testTag(TASK_ONE_TIME_CONTENT).semantics(mergeDescendants = false) {}
+            modifier = Modifier
+                .testTag(TASK_ONE_TIME_CONTENT)
+                .semantics(mergeDescendants = false) {}
         )
     }
     if (showDialogPicker) {

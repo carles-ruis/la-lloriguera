@@ -37,7 +37,7 @@ class GetTaskTest {
     }
 
     companion object {
-        private val taskId = "1"
+        private const val taskId = "1"
         private val task = Tasc(taskId, "TASK!", true, 0L, 7, false)
     }
 }

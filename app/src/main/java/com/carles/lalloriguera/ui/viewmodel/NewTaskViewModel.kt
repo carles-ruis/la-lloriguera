@@ -8,7 +8,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewTaskViewModel @Inject constructor(private val newTask: NewTask) : ViewModel(), TaskFormHandler by TaskFormDelegate() {
+class NewTaskViewModel @Inject constructor(
+    private val newTask: NewTask,
+    private val delegate: TaskFormDelegate
+) : ViewModel(), TaskFormHandler by delegate {
 
     fun onSaveClick() {
         viewModelScope.launch {

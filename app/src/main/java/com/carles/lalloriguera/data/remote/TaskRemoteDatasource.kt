@@ -15,7 +15,7 @@ class TaskRemoteDatasource @Inject constructor(
 ) : TaskDatasource {
 
     override suspend fun getTask(id: String): Tasc {
-        checkConnection()
+        database.waitForConnection()
         val reference = database.child(TASKS_NODE).child(id)
         val taskRef = reference.singleValueEvent(TaskRef::class.java)
         return taskMapper.fromRef(taskRef)
@@ -31,14 +31,14 @@ class TaskRemoteDatasource @Inject constructor(
     }
 
     override suspend fun saveTask(task: Tasc) {
-        checkConnection()
+        database.waitForConnection()
         val taskId = database.generateNodeId()
         val taskRef = taskMapper.toRef(task).copy(id = taskId)
         database.child(TASKS_NODE).child(taskId).setValue(taskRef).setValueListeners()
     }
 
     override suspend fun updateTask(task: Tasc) {
-        checkConnection()
+        database.waitForConnection()
         if (task.id == null) {
             throw CancellationException("Error updating task. Task id not set")
         } else {
@@ -48,12 +48,8 @@ class TaskRemoteDatasource @Inject constructor(
     }
 
     override suspend fun deleteTask(id: String) {
-        checkConnection()
-        database.child(TASKS_NODE).child(id).removeValue().setValueListeners()
-    }
-
-    private suspend fun checkConnection() {
         database.waitForConnection()
+        database.child(TASKS_NODE).child(id).removeValue().setValueListeners()
     }
 
     companion object {

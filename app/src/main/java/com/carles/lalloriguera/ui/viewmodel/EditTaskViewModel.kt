@@ -18,8 +18,9 @@ class EditTaskViewModel @Inject constructor(
     private val getTask: GetTask,
     private val updateTask: UpdateTask,
     private val deleteTask: DeleteTask,
+    private val delegate: TaskFormDelegate,
     savedStateHandle: SavedStateHandle
-) : ViewModel(), TaskFormHandler by TaskFormDelegate() {
+) : ViewModel(), TaskFormHandler by delegate {
 
     private val taskId = savedStateHandle.get<String>("taskId") ?: "0"
 

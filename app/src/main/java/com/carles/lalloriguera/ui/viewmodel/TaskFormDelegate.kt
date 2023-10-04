@@ -100,12 +100,12 @@ class TaskFormDelegate @Inject constructor() : TaskFormHandler {
     }
 
     override fun onLastDateChange(lastDate: Long) {
-        require(task.isOneTime.not()) { "Cannot change last date on a one time task" }
+        check(task.isOneTime.not()) { "Cannot change last date on a one time task" }
         task = task.copy(lastDate = lastDate)
     }
 
     override fun onNextDateChange(nextDate: Long) {
-        require(task.isOneTime) { "Cannot change next date on a periodic task" }
+        check(task.isOneTime) { "Cannot change next date on a periodic task" }
         val now = System.currentTimeMillis()
         val daysRemaining = getDaysBetweenDates(now, nextDate)
         task = task.copy(lastDate = now, periodicity = daysRemaining)

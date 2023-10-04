@@ -1,4 +1,4 @@
-package com.carles.lalloriguera.ui
+package com.carles.lalloriguera.ui.viewmodel
 
 import MainDispatcherRule
 import com.carles.lalloriguera.R
@@ -6,10 +6,6 @@ import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
 import com.carles.lalloriguera.domain.GetTasks
 import com.carles.lalloriguera.domain.MarkTaskAsDone
 import com.carles.lalloriguera.model.Tasc
-import com.carles.lalloriguera.ui.viewmodel.HasPendingTasksDelegate
-import com.carles.lalloriguera.ui.viewmodel.TasksEvent
-import com.carles.lalloriguera.ui.viewmodel.TasksState
-import com.carles.lalloriguera.ui.viewmodel.TasksViewModel
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -61,7 +57,7 @@ class TasksViewModelTest {
     }
 
     @Test
-    fun `given onTaskDone, when is marked succesfully, then send task done event`() = runTest {
+    fun `given onTaskDone, when is marked successfully, then send task done event`() = runTest {
         initViewModel()
         coEvery { markTaskAsDone.execute(any()) } just Runs
         viewModel.onTaskDone(task1)

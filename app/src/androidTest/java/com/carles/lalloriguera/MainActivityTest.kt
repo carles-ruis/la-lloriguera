@@ -56,5 +56,4 @@ class MainActivityTest {
             assertTrue(isResumed || isCreated)
         }
     }
-
 }

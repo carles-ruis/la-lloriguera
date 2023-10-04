@@ -1,12 +1,9 @@
-package com.carles.lalloriguera.ui
+package com.carles.lalloriguera.ui.viewmodel
 
 import com.carles.lalloriguera.R
 import com.carles.lalloriguera.common.TimeHelper
 import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
 import com.carles.lalloriguera.model.Tasc
-import com.carles.lalloriguera.ui.viewmodel.TaskFormDelegate
-import com.carles.lalloriguera.ui.viewmodel.TaskFormEvent
-import com.carles.lalloriguera.ui.viewmodel.TaskFormState
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify

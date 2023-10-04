@@ -1,10 +1,8 @@
-package com.carles.lalloriguera.ui
+package com.carles.lalloriguera.ui.viewmodel
 
 import MainDispatcherRule
 import com.carles.lalloriguera.domain.NewTask
 import com.carles.lalloriguera.model.Tasc
-import com.carles.lalloriguera.ui.viewmodel.NewTaskViewModel
-import com.carles.lalloriguera.ui.viewmodel.TaskFormDelegate
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify

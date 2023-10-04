@@ -1,4 +1,4 @@
-package com.carles.lalloriguera.ui
+package com.carles.lalloriguera.ui.viewmodel
 
 import MainDispatcherRule
 import androidx.lifecycle.SavedStateHandle
@@ -8,8 +8,6 @@ import com.carles.lalloriguera.domain.DeleteTask
 import com.carles.lalloriguera.domain.GetTask
 import com.carles.lalloriguera.domain.UpdateTask
 import com.carles.lalloriguera.model.Tasc
-import com.carles.lalloriguera.ui.viewmodel.EditTaskViewModel
-import com.carles.lalloriguera.ui.viewmodel.TaskFormDelegate
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -122,6 +120,4 @@ class EditTaskViewModelTest {
         private const val taskId = "1"
         private val task = Tasc(taskId, "the task", false, 0L, 7, false)
     }
-
-
 }

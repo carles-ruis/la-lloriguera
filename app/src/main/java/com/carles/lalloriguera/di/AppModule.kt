@@ -50,7 +50,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDatabaseReference(): DatabaseReference {
-        // URL for testing with an emulator
+        // add local URL for testing with an emulator
         return Firebase.database.reference
     }
 }

@@ -1,4 +1,4 @@
-package com.carles.lalloriguera.ui
+package com.carles.lalloriguera.ui.viewmodel
 
 import com.carles.lalloriguera.model.Tasc
 import com.carles.lalloriguera.ui.viewmodel.HasPendingTasksDelegate
