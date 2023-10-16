@@ -1,6 +1,6 @@
 package com.carles.lalloriguera.ui.viewmodel
 
-import MainDispatcherRule
+import com.carles.lalloriguera.MainDispatcherRule
 import com.carles.lalloriguera.R
 import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
 import com.carles.lalloriguera.domain.GetTasks

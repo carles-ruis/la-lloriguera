@@ -1,6 +1,6 @@
 package com.carles.lalloriguera.ui.viewmodel
 
-import MainDispatcherRule
+import com.carles.lalloriguera.MainDispatcherRule
 import com.carles.lalloriguera.domain.NewTask
 import com.carles.lalloriguera.model.Tasc
 import io.mockk.Runs

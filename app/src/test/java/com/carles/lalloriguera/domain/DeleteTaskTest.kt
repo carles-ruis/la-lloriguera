@@ -1,6 +1,6 @@
 package com.carles.lalloriguera.domain
 
-import MainDispatcherRule
+import com.carles.lalloriguera.MainDispatcherRule
 import com.carles.lalloriguera.AppDispatchers
 import com.carles.lalloriguera.data.TaskRepository
 import io.mockk.Runs

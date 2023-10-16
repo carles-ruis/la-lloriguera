@@ -1,6 +1,6 @@
 package com.carles.lalloriguera.ui.viewmodel
 
-import MainDispatcherRule
+import com.carles.lalloriguera.MainDispatcherRule
 import androidx.lifecycle.SavedStateHandle
 import com.carles.lalloriguera.R
 import com.carles.lalloriguera.data.remote.NoConnectionCancellationException

@@ -1,6 +1,6 @@
 package com.carles.lalloriguera.domain
 
-import MainDispatcherRule
+import com.carles.lalloriguera.MainDispatcherRule
 import com.carles.lalloriguera.AppDispatchers
 import com.carles.lalloriguera.data.TaskRepository
 import com.carles.lalloriguera.model.Tasc
@@ -10,7 +10,6 @@ import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

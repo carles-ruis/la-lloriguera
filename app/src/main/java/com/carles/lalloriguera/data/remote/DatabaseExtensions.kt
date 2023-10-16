@@ -31,7 +31,7 @@ fun <T> DatabaseReference.flowList(dataType: Class<T>): Flow<List<T>> = callback
         }
 
         override fun onCancelled(error: DatabaseError) {
-            Log.w("TaskRemoteDatasource", "flowList:${error.message}")
+            Log.w("DatabaseReference", "flowList:${error.message}")
             cancel(error.message)
         }
     }
@@ -47,7 +47,7 @@ suspend fun <T> DatabaseReference.singleValueEvent(dataType: Class<T>): T = susp
         }
 
         override fun onCancelled(error: DatabaseError) {
-            Log.w("TaskRemoteDatasource", "singleValueEvent:${error.message}")
+            Log.w("DatabaseReference", "singleValueEvent:${error.message}")
             continuation.resumeWithException(error.toException())
         }
     }
@@ -57,25 +57,26 @@ suspend fun <T> DatabaseReference.singleValueEvent(dataType: Class<T>): T = susp
 suspend fun DatabaseReference.waitForConnection(timeout: Long = DEFAULT_TIMEOUT): Boolean = try {
     withTimeout(timeMillis = timeout) {
         suspendCancellableCoroutine { continuation ->
-
             val listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.i("DatabaseReference", "waitForConnection:onDataChange")
                     val isConnected = snapshot.getValue(Boolean::class.java)!!
                     if (isConnected) {
                         if (continuation.isCompleted) {
-                            Log.i("TaskRemoteDatasource", "waitForConnection:onDataChanged:continuation already resumed")
+                            Log.i("DatabaseReference", "waitForConnection:onDataChanged:continuation already resumed")
                             return
                         }
                         continuation.resume(true)
                     }
+                    Log.i("DatabaseReference", "waitForConnection:isConnected?$isConnected")
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     if (continuation.isCompleted) {
-                        Log.i("TaskRemoteDatasource", "waitForConnection:onCancelled:continuation already resumed")
+                        Log.i("DatabaseReference", "waitForConnection:onCancelled:continuation already resumed")
                         return
                     }
-                    Log.w("TaskRemoteDatasource", "checkConnection:${error.message}")
+                    Log.w("DatabaseReference", "checkConnection:${error.message}")
                     continuation.resumeWithException(error.toException())
                 }
             }

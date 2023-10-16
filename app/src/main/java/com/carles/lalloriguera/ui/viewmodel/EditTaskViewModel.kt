@@ -9,6 +9,8 @@ import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
 import com.carles.lalloriguera.domain.DeleteTask
 import com.carles.lalloriguera.domain.GetTask
 import com.carles.lalloriguera.domain.UpdateTask
+import com.carles.lalloriguera.ui.screens.Arguments
+import com.carles.lalloriguera.ui.screens.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +24,7 @@ class EditTaskViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), TaskFormHandler by delegate {
 
-    private val taskId = savedStateHandle.get<String>("taskId") ?: "0"
+    private val taskId = savedStateHandle.get<String>(Arguments.taskId) ?: "0"
 
     init {
         getTask()

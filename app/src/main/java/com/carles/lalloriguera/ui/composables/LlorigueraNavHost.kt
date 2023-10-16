@@ -4,12 +4,8 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
@@ -23,14 +19,12 @@ import com.carles.lalloriguera.ui.screens.NewTaskScreen
 import com.carles.lalloriguera.ui.screens.Screen
 import com.carles.lalloriguera.ui.screens.SignInScreen
 import com.carles.lalloriguera.ui.screens.TasksScreen
-import com.google.firebase.ktx.Firebase
 
 @Composable
 fun LlorigueraNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-
     val onNewTaskClick = { navController.toNewTask() }
     val onEditTaskClick: (String) -> Unit = { taskId -> navController.toEditTask(taskId) }
     val onNoPendingTasks = { navController.toConill() }

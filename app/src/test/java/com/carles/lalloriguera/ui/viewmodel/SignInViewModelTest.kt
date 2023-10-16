@@ -1,19 +1,12 @@
 package com.carles.lalloriguera.ui.viewmodel
 
-import MainDispatcherRule
+import com.carles.lalloriguera.MainDispatcherRule
 import android.app.Activity
 import com.carles.lalloriguera.R
-import com.carles.lalloriguera.ui.viewmodel.SignInEvent
-import com.carles.lalloriguera.ui.viewmodel.SignInState
-import com.carles.lalloriguera.ui.viewmodel.SignInViewModel
 import com.firebase.ui.auth.IdpResponse
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import junit.framework.TestCase.assertEquals
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
