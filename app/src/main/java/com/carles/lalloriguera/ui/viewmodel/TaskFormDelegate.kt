@@ -3,7 +3,7 @@ package com.carles.lalloriguera.ui.viewmodel
 import androidx.annotation.StringRes
 import com.carles.lalloriguera.R
 import com.carles.lalloriguera.common.TimeHelper.Companion.getDaysBetweenDates
-import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
+import com.carles.lalloriguera.data.remote.TimeoutConnectionException
 import com.carles.lalloriguera.model.Tasc
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -131,7 +131,7 @@ class TaskFormDelegate @Inject constructor() : TaskFormHandler {
             } catch (e: Exception) {
                 _state.value = TaskFormState.Filling(task, true)
                 val message =
-                    if (e is NoConnectionCancellationException) R.string.no_internet_connection else R.string.edit_task_save_error
+                    if (e is TimeoutConnectionException) R.string.no_internet_connection else R.string.edit_task_save_error
                 _event.send(TaskFormEvent.ShowError(message))
             }
         }

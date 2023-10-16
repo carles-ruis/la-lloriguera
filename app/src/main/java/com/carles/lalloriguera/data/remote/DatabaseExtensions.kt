@@ -76,7 +76,7 @@ suspend fun DatabaseReference.waitForConnection(timeout: Long = DEFAULT_TIMEOUT)
                         Log.i("DatabaseReference", "waitForConnection:onCancelled:continuation already resumed")
                         return
                     }
-                    Log.w("DatabaseReference", "checkConnection:${error.message}")
+                    Log.w("DatabaseReference", "waitForConnection:error:${error.message}")
                     continuation.resumeWithException(error.toException())
                 }
             }
@@ -84,7 +84,8 @@ suspend fun DatabaseReference.waitForConnection(timeout: Long = DEFAULT_TIMEOUT)
         }
     }
 } catch (e: TimeoutCancellationException) {
-    throw NoConnectionCancellationException()
+    Log.w("DatabaseReference", "waitForConnection:TimeoutConnectionException")
+    throw TimeoutConnectionException()
 }
 
 fun DatabaseReference.generateNodeId(): String {

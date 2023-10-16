@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carles.lalloriguera.R
-import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
+import com.carles.lalloriguera.data.remote.TimeoutConnectionException
 import com.carles.lalloriguera.domain.GetTasks
 import com.carles.lalloriguera.domain.MarkTaskAsDone
 import com.carles.lalloriguera.model.Tasc
@@ -57,7 +57,7 @@ class TasksViewModel @Inject constructor(
             .catch { error ->
                 Log.w("TasksViewModel", error.localizedMessage ?: "getTasks error")
                 _state.value = TasksState.Error(
-                    if (error is NoConnectionCancellationException) R.string.no_internet_connection else R.string.tasks_error
+                    if (error is TimeoutConnectionException) R.string.no_internet_connection else R.string.tasks_error
                 )
             }.onEach { tasks ->
                 checkIfHasNoPendingTasks(tasks)
@@ -76,7 +76,7 @@ class TasksViewModel @Inject constructor(
                 markTaskAsDone.execute(task)
                 _event.send(TasksEvent.TaskDone(task.name))
             } catch (e: Exception) {
-                val message = if (e is NoConnectionCancellationException) R.string.no_internet_connection else R.string.tasks_mark_as_done_error
+                val message = if (e is TimeoutConnectionException) R.string.no_internet_connection else R.string.tasks_mark_as_done_error
                 _event.send(TasksEvent.ShowError(message))
             }
         }

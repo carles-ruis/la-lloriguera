@@ -2,7 +2,7 @@ package com.carles.lalloriguera.ui.viewmodel
 
 import com.carles.lalloriguera.R
 import com.carles.lalloriguera.common.TimeHelper
-import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
+import com.carles.lalloriguera.data.remote.TimeoutConnectionException
 import com.carles.lalloriguera.model.Tasc
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -160,7 +160,7 @@ class TaskFormDelegateTest {
     @Test
     fun `given onSaveClick, when save action returns connection error, then send ShowError event with no connection message`() =
         runTest {
-            coEvery { saveAction.invoke(any()) } throws NoConnectionCancellationException()
+            coEvery { saveAction.invoke(any()) } throws TimeoutConnectionException()
 
             delegate.initTask(task)
             delegate.onSaveClick(saveAction)

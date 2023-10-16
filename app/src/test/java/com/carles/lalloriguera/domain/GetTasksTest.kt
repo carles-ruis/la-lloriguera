@@ -32,14 +32,16 @@ class GetTasksTest {
     }
 
     @Test
-    fun `given usecase, when executed, then get tasks from repository`() = runTest {
-        val tasks = listOf(task)
-        coEvery { repository.getTasks() } returns flowOf(listOf(task))
-        assertEquals(tasks, usecase.execute().first())
+    fun `given usecase, when executed, then get tasks from repository ordered by days remaining`() = runTest {
+        val tasks = listOf(task, oldTask)
+        val expectedTasks = listOf(oldTask, task)
+        coEvery { repository.getTasks() } returns flowOf(tasks)
+        assertEquals(expectedTasks, usecase.execute().first())
         coVerify { repository.getTasks() }
     }
 
     companion object {
         private val task = Tasc("1", "TASK!", true, 0L, 7, false)
+        private val oldTask = Tasc("2", "TASK2!", true, 0L, 1, false)
     }
 }

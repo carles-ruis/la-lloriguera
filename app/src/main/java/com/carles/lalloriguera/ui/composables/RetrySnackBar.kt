@@ -9,12 +9,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.carles.lalloriguera.R
-import kotlinx.coroutines.launch
 
 @Composable
 fun RetrySnackBar(@StringRes resId: Int, onRetry: () -> Unit, modifier: Modifier = Modifier) {
@@ -24,7 +22,6 @@ fun RetrySnackBar(@StringRes resId: Int, onRetry: () -> Unit, modifier: Modifier
 @Composable
 fun RetrySnackBar(message: String, onRetry: () -> Unit, modifier: Modifier = Modifier) {
     val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
     val retryText = stringResource(R.string.retry)
 
     Box(modifier = modifier.fillMaxSize()) {
@@ -35,10 +32,8 @@ fun RetrySnackBar(message: String, onRetry: () -> Unit, modifier: Modifier = Mod
             Snackbar(snackbarData, actionOnNewLine = true)
         }
     }
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
-            snackbarHostState.showSnackbar(message, retryText)
-            onRetry()
-        }
+    LaunchedEffect(snackbarHostState) {
+        snackbarHostState.showSnackbar(message, retryText)
+        onRetry()
     }
 }

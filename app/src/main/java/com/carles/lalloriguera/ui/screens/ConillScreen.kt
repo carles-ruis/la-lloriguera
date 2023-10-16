@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import com.carles.lalloriguera.R
 import com.carles.lalloriguera.ui.extensions.Tags
 import com.carles.lalloriguera.ui.theme.LlorigueraTheme
-import com.carles.lalloriguera.ui.theme.Typo
 
 @Composable
 fun ConillScreen(navigateUp: () -> Unit = {}) {
@@ -47,7 +45,7 @@ fun ConillScreen(navigateUp: () -> Unit = {}) {
         ElevatedButton(
             onClick = navigateUp,
             modifier = Modifier.testTag(Tags.CONILL_OK_BUTTON)
-            ) {
+        ) {
             Text(stringResource(id = R.string.ok))
         }
     }

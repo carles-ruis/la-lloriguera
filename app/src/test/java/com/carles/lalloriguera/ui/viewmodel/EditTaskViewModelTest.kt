@@ -3,7 +3,7 @@ package com.carles.lalloriguera.ui.viewmodel
 import com.carles.lalloriguera.MainDispatcherRule
 import androidx.lifecycle.SavedStateHandle
 import com.carles.lalloriguera.R
-import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
+import com.carles.lalloriguera.data.remote.TimeoutConnectionException
 import com.carles.lalloriguera.domain.DeleteTask
 import com.carles.lalloriguera.domain.GetTask
 import com.carles.lalloriguera.domain.UpdateTask
@@ -44,7 +44,7 @@ class EditTaskViewModelTest {
     fun `given view model created, when get task returns a no connection error, then show no connection error message`() =
         runTest {
         coEvery { delegate.setLoadingState() } just Runs
-        coEvery { getTask.execute(any()) } throws NoConnectionCancellationException()
+        coEvery { getTask.execute(any()) } throws TimeoutConnectionException()
         coEvery { delegate.sendShowErrorEvent(any(), any()) } just Runs
         viewModel = EditTaskViewModel(getTask, updateTask, deleteTask, delegate, savedState)
         coVerify { delegate.sendShowErrorEvent(R.string.no_internet_connection, true) }
@@ -95,7 +95,7 @@ class EditTaskViewModelTest {
         coEvery { delegate.initTask(any()) } just Runs
         viewModel = EditTaskViewModel(getTask, updateTask, deleteTask, delegate, savedState)
 
-        coEvery { deleteTask.execute(any()) } throws NoConnectionCancellationException()
+        coEvery { deleteTask.execute(any()) } throws TimeoutConnectionException()
         coEvery { delegate.sendShowErrorEvent(any(), any()) } just Runs
         viewModel.onDeleteClick()
         coVerify { deleteTask.execute(taskId) }

@@ -3,7 +3,9 @@ package com.carles.lalloriguera.data
 import com.carles.lalloriguera.model.Tasc
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TaskRepository @Inject constructor(private val datasource: TaskDatasource) {
 
     suspend fun getTask(id: String): Tasc {

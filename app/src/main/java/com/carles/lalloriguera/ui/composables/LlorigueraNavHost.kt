@@ -76,9 +76,7 @@ private fun NavGraphBuilder.tasksListDestination(
     }
 }
 
-private fun NavGraphBuilder.newTaskDestination(
-    navigateUp: () -> Unit,
-) {
+private fun NavGraphBuilder.newTaskDestination(navigateUp: () -> Unit) {
     composableWithTransition(Screen.NewTask.route) {
         NewTaskScreen(hiltViewModel(), navigateUp)
     }

@@ -2,7 +2,7 @@ package com.carles.lalloriguera.ui.viewmodel
 
 import com.carles.lalloriguera.MainDispatcherRule
 import com.carles.lalloriguera.R
-import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
+import com.carles.lalloriguera.data.remote.TimeoutConnectionException
 import com.carles.lalloriguera.domain.GetTasks
 import com.carles.lalloriguera.domain.MarkTaskAsDone
 import com.carles.lalloriguera.model.Tasc
@@ -43,7 +43,7 @@ class TasksViewModelTest {
     // @Test
     // how to test catch block ???
     fun `given initialization, when there is a no connection exception, then set error state with no connection message`() {
-        coEvery { getTasks.execute() } throws NoConnectionCancellationException()
+        coEvery { getTasks.execute() } throws TimeoutConnectionException()
         viewModel = TasksViewModel(getTasks, markTaskAsDone, delegate)
         coVerify { getTasks.execute() }
         assertTrue(viewModel.state.value == TasksState.Error(R.string.no_internet_connection))
@@ -68,7 +68,7 @@ class TasksViewModelTest {
     @Test
     fun `given onTaskDone, when there is a connection error, then show connection error message`() = runTest {
         initViewModel()
-        coEvery { markTaskAsDone.execute(any()) } throws NoConnectionCancellationException()
+        coEvery { markTaskAsDone.execute(any()) } throws TimeoutConnectionException()
         viewModel.onTaskDone(task1)
         coVerify { markTaskAsDone.execute(task1) }
         assertTrue(viewModel.event.first() == TasksEvent.ShowError(R.string.no_internet_connection))

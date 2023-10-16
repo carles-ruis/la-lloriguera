@@ -5,12 +5,11 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carles.lalloriguera.R
-import com.carles.lalloriguera.data.remote.NoConnectionCancellationException
+import com.carles.lalloriguera.data.remote.TimeoutConnectionException
 import com.carles.lalloriguera.domain.DeleteTask
 import com.carles.lalloriguera.domain.GetTask
 import com.carles.lalloriguera.domain.UpdateTask
 import com.carles.lalloriguera.ui.screens.Arguments
-import com.carles.lalloriguera.ui.screens.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,7 +37,7 @@ class EditTaskViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.w("EditTaskViewModel", e.localizedMessage ?: "getTask error")
                 val message =
-                    if (e is NoConnectionCancellationException) R.string.no_internet_connection else R.string.edit_task_load_error
+                    if (e is TimeoutConnectionException) R.string.no_internet_connection else R.string.edit_task_load_error
                 sendShowErrorEvent(message, exit = true)
             }
         }
@@ -59,7 +58,7 @@ class EditTaskViewModel @Inject constructor(
                 sendDeletedEvent()
             } catch (e: Exception) {
                 val message =
-                    if (e is NoConnectionCancellationException) R.string.no_internet_connection else R.string.edit_task_delete_error
+                    if (e is TimeoutConnectionException) R.string.no_internet_connection else R.string.edit_task_delete_error
                 sendShowErrorEvent(message)
             }
         }
